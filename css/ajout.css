@@ -467,7 +467,7 @@
     position: fixed;
     top: calc(var(--topbar-height) + 8px);
     left: 50%;
-    transform: translateX(-50%) translateY(-60px);
+    transform: translateX(-50%) translateY(-80px);
     display: flex;
     align-items: center;
     gap: 8px;
@@ -479,7 +479,11 @@
     font-weight: 500;
     box-shadow: var(--shadow-lg);
     z-index: 2500;
-    transition: transform var(--transition-slow);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1),
+                opacity 300ms ease,
+                visibility 300ms ease;
     pointer-events: none;
 }
 
@@ -489,8 +493,19 @@
 
 .offline-indicator.visible {
     transform: translateX(-50%) translateY(0);
+    opacity: 1;
+    visibility: visible;
 }
 
+/* Animation pulse quand visible */
+.offline-indicator.visible .material-symbols-outlined {
+    animation: offlinePulse 2s ease-in-out infinite;
+}
+
+@keyframes offlinePulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
 /* ── Update Banner ── */
 .update-banner {
     position: fixed;

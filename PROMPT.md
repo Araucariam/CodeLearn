@@ -155,14 +155,85 @@ git commit -m "Initial commit — CodeLearn PWA"
 git branch -M main
 git remote add origin https://github.com/VOTRE_USERNAME/CodeLearn.git
 git push -u origin main
+
 2. Activer GitHub Pages
-Allez dans Settings → Pages
-Source : Deploy from a branch
-Branch : main / dossier : / (root)
-Cliquez Save
+      Allez dans Settings → Pages
+      Source : Deploy from a branch
+      Branch : main / dossier : / (root)
+      Cliquez Save
 
 3. URL de votre app
 text
 
 https://VOTRE_USERNAME.github.io/CodeLearn/
 GitHub Pages sert en HTTPS → navigator.clipboard et le Service Worker fonctionnent parfaitement ✓
+
+📋 Mise à jour du cache après ajout de cours
+Quand vous ajoutez un nouveau cours :
+
+1. Ajouter dans sw.js
+JavaScript
+
+// Dans le tableau COURSES, ajouter :
+'./courses/python/01-introduction.html',
+2. Incrémenter la version du cache
+JavaScript
+
+const CACHE_NAME = 'codelearn-v2';  // v1 → v2
+📱 Installation sur smartphone
+Android (Chrome)
+Ouvrez https://VOTRE_USERNAME.github.io/CodeLearn/
+Attendez 30 secondes → la bannière d'installation apparaît
+Ou : Menu ⋮ → "Installer l'application"
+iPhone (Safari)
+Ouvrez l'URL dans Safari
+Tapez le bouton Partager (carré avec flèche)
+Sélectionnez "Sur l'écran d'accueil"
+Desktop (Chrome/Edge)
+Icône d'installation dans la barre d'adresse
+Ou bannière automatique après 30s
+
+Vérification du fonctionnement
+Dans Chrome DevTools (F12)
+Onglet	Vérification
+Application → Manifest	Vérifier que le manifest est détecté
+Application → Service Workers	Status "activated and running"
+Application → Cache Storage	codelearn-v1 avec tous les fichiers
+Network	Cocher "Offline" → l'app doit fonctionner
+Lighthouse	Run audit PWA → score vert
+
+
+Test hors-ligne
+Ouvrez l'app une première fois (online)
+Coupez le WiFi / passez en mode avion
+Rechargez → tout doit fonctionner
+La pastille "Mode hors-ligne" apparaît en haut
+
+
+
+Pourquoi ça arrive et comment ça fonctionne maintenant
+Problème	Cause	Solution
+navigator.onLine retourne false alors qu'on est connecté	Bug connu des PWA installées — le navigateur considère parfois la PWA comme "offline" au lancement car elle charge depuis le cache du SW	Ping réseau réel avec fetch() en HEAD + fallback image
+La pastille apparaît au démarrage	Le check s'exécutait immédiatement avant que le réseau soit prêt	Délai initial de 2 secondes avant la première vérification
+La pastille ne disparaît pas	Pas de re-vérification après le changement de statut	Re-check périodique toutes les 30s quand offline + re-check sur événement online
+
+
+Flux de vérification
+text
+
+App démarre
+    │
+    ├─ Attendre 2 secondes
+    │
+    ├─ navigator.onLine === true ?
+    │   └─ OUI → Pastille cachée ✓
+    │
+    ├─ navigator.onLine === false ?
+    │   └─ Fetch HEAD manifest.json
+    │       ├─ Succès → Online en réalité → Pastille cachée ✓
+    │       └─ Échec → Test avec image
+    │           ├─ Image chargée → Online → Pastille cachée ✓
+    │           └─ Image échouée → Vraiment offline → Pastille visible
+    │
+    └─ Si offline → re-vérifier toutes les 30s
+        └─ Dès que online → Pastille cachée automatiquement ✓

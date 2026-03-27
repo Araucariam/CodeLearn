@@ -1167,14 +1167,12 @@
                     .then(function (registration) {
                         console.log('[PWA] Service Worker enregistré ✓', registration.scope);
 
-                        // Check for updates
                         registration.addEventListener('updatefound', function () {
                             var newWorker = registration.installing;
                             if (!newWorker) return;
 
                             newWorker.addEventListener('statechange', function () {
                                 if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                                    // New version available
                                     showUpdateBanner(registration);
                                 }
                             });
@@ -1184,7 +1182,6 @@
                         console.warn('[PWA] Erreur SW:', err);
                     });
 
-                // Listen for messages from SW
                 navigator.serviceWorker.addEventListener('message', function (event) {
                     if (event.data && event.data.type === 'CACHE_UPDATED') {
                         console.log('[PWA] Cache mis à jour ✓');
@@ -1203,15 +1200,12 @@
             e.preventDefault();
             deferredPrompt = e;
 
-            // Don't show if already dismissed recently
             var dismissed = localStorage.getItem('codelearn-pwa-dismissed');
             if (dismissed) {
                 var dismissedAt = parseInt(dismissed, 10);
-                // Show again after 7 days
                 if (Date.now() - dismissedAt < 7 * 24 * 60 * 60 * 1000) return;
             }
 
-            // Show banner after 30 seconds
             setTimeout(function () {
                 if (installBanner && deferredPrompt) {
                     installBanner.classList.add('visible');
@@ -1238,28 +1232,138 @@
             });
         }
 
-        // Hide banner if already installed
         window.addEventListener('appinstalled', function () {
             console.log('[PWA] Application installée ✓');
             if (installBanner) installBanner.classList.remove('visible');
             deferredPrompt = null;
         });
 
-        // ── Offline Detection ──
+        // ══════════════════════════════════════
+        // OFFLINE DETECTION — VERSION CORRIGÉE
+        // ══════════════════════════════════════
         var offlineEl = document.getElementById('offlineIndicator');
+        var isActuallyOffline = false;
+        var offlineCheckTimer = null;
 
-        function updateOnlineStatus() {
-            if (!offlineEl) return;
+        /**
+         * Vérifie la connectivité réelle en faisant un ping réseau
+         * navigator.onLine n'est PAS fiable (retourne parfois false
+         * même quand on est connecté, surtout dans les PWA installées)
+         */
+        function checkRealConnectivity() {
+            // Si navigator.onLine dit true → on est online (fiable dans ce sens)
             if (navigator.onLine) {
+                setOnlineStatus(true);
+                return;
+            }
+
+            // Si navigator.onLine dit false → vérifier avec un vrai fetch
+            // Car c'est souvent un faux négatif dans les PWA
+            var testUrl = window.location.origin + '/manifest.json?_ping=' + Date.now();
+
+            // Timeout court pour ne pas bloquer
+            var controller = null;
+            var signal = null;
+            var timeoutId = null;
+
+            if (typeof AbortController !== 'undefined') {
+                controller = new AbortController();
+                signal = controller.signal;
+                timeoutId = setTimeout(function () { controller.abort(); }, 3000);
+            }
+
+            var fetchOptions = { method: 'HEAD', mode: 'no-cors', cache: 'no-store' };
+            if (signal) fetchOptions.signal = signal;
+
+            fetch(testUrl, fetchOptions)
+                .then(function () {
+                    // Fetch succeeded → we're online even though navigator.onLine said false
+                    if (timeoutId) clearTimeout(timeoutId);
+                    setOnlineStatus(true);
+                })
+                .catch(function (err) {
+                    if (timeoutId) clearTimeout(timeoutId);
+                    // Fetch failed → check if it's an abort or real offline
+                    if (err.name === 'AbortError') {
+                        // Timeout → likely offline
+                        setOnlineStatus(false);
+                    } else {
+                        // Could be CORS error (which means server responded → online)
+                        // Or actual network error
+                        // Try one more method
+                        testWithImage();
+                    }
+                });
+        }
+
+        /**
+         * Fallback: test avec une image 1x1 pixel
+         */
+        function testWithImage() {
+            var img = new Image();
+            var timeout = setTimeout(function () {
+                img.onload = img.onerror = null;
+                setOnlineStatus(false);
+            }, 3000);
+
+            img.onload = function () {
+                clearTimeout(timeout);
+                setOnlineStatus(true);
+            };
+
+            img.onerror = function () {
+                clearTimeout(timeout);
+                // Image error could mean online (404) or offline
+                // If we got here from a CORS fetch error, assume online
+                setOnlineStatus(false);
+            };
+
+            // Use favicon or small known file
+            img.src = './assets/icons/icon-192.png?_ping=' + Date.now();
+        }
+
+        /**
+         * Met à jour l'affichage de la pastille
+         */
+        function setOnlineStatus(online) {
+            if (!offlineEl) return;
+
+            if (online) {
+                // ONLINE → cacher la pastille
+                isActuallyOffline = false;
                 offlineEl.classList.remove('visible');
             } else {
-                offlineEl.classList.add('visible');
+                // OFFLINE confirmé → montrer la pastille
+                if (!isActuallyOffline) {
+                    isActuallyOffline = true;
+                    offlineEl.classList.add('visible');
+                }
             }
         }
 
-        window.addEventListener('online', updateOnlineStatus);
-        window.addEventListener('offline', updateOnlineStatus);
-        updateOnlineStatus();
+        // Écouter les événements natifs
+        window.addEventListener('online', function () {
+            console.log('[PWA] Événement: online');
+            setOnlineStatus(true);
+            // Re-vérifier après un court délai (l'événement peut être prématuré)
+            setTimeout(checkRealConnectivity, 1000);
+        });
+
+        window.addEventListener('offline', function () {
+            console.log('[PWA] Événement: offline');
+            // Ne pas afficher immédiatement → vérifier d'abord
+            setTimeout(checkRealConnectivity, 500);
+        });
+
+        // Vérification initiale — avec un délai pour laisser le SW s'activer
+        setTimeout(checkRealConnectivity, 2000);
+
+        // Vérification périodique (toutes les 30 secondes si offline)
+        setInterval(function () {
+            if (isActuallyOffline) {
+                checkRealConnectivity();
+            }
+        }, 30000);
 
         // ── Update Banner ──
         function showUpdateBanner(registration) {
@@ -1276,7 +1380,6 @@
                         registration.waiting.postMessage({ type: 'SKIP_WAITING' });
                     }
                     banner.classList.remove('visible');
-                    // Reload after new SW takes over
                     navigator.serviceWorker.addEventListener('controllerchange', function () {
                         window.location.reload();
                     });
