@@ -1,0 +1,41 @@
+{
+    "name": "CodeLearn — Apprendre à Coder",
+    "short_name": "CodeLearn",
+    "description": "Plateforme d'apprentissage de la programmation : HTML, CSS, JS, Go, Rust, Docker, Git, IA",
+    "start_url": "./index.html",
+    "scope": "./",
+    "display": "standalone",
+    "orientation": "any",
+    "theme_color": "#4a5ced",
+    "background_color": "#f8f9fb",
+    "lang": "fr",
+    "dir": "ltr",
+    "categories": ["education", "developer tools"],
+    "icons": [
+        {
+            "src": "assets/icons/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "assets/icons/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "screenshots": [],
+    "shortcuts": [
+        {
+            "name": "Cours HTML",
+            "url": "./index.html#/html/01-introduction",
+            "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }]
+        },
+        {
+            "name": "Cours JavaScript",
+            "url": "./index.html#/javascript/01-introduction",
+            "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }]
+        }
+    ]
+}

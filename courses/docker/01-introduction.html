@@ -1,0 +1,134 @@
+<h2>Qu'est-ce que Docker ?</h2>
+
+<p>
+    <strong>Docker</strong> est une plateforme de conteneurisation qui permet de packager 
+    une application avec toutes ses dépendances dans un <em>conteneur</em> isolé et portable.
+</p>
+
+<div class="info-box note">
+    <span class="material-symbols-outlined">info</span>
+    <div>
+        <strong>Conteneur vs Machine virtuelle</strong><br>
+        Un conteneur partage le noyau de l'OS hôte, ce qui le rend beaucoup plus 
+        <strong>léger</strong> et <strong>rapide</strong> qu'une VM traditionnelle.
+    </div>
+</div>
+
+<h2>Concepts clés</h2>
+
+<ul>
+    <li><strong>Image</strong> — Un template immuable contenant l'OS, le runtime et l'application</li>
+    <li><strong>Conteneur</strong> — Une instance d'exécution d'une image</li>
+    <li><strong>Dockerfile</strong> — Un fichier texte décrivant comment construire une image</li>
+    <li><strong>Registry</strong> — Un dépôt d'images (Docker Hub, GitHub Container Registry)</li>
+</ul>
+
+<h2>Installation</h2>
+
+<p>Vérifiez votre installation :</p>
+
+<pre><code class="language-bash"><span class="fn">docker</span> <span class="op">--</span>version
+<span class="cmt"># Docker version 24.0.7, build afdd53b</span>
+
+<span class="fn">docker</span> run hello-world</code></pre>
+
+<h2>Commandes essentielles</h2>
+
+<div class="code-block">
+    <div class="code-block-header">
+        <div class="code-block-lang">
+            <span class="code-block-dots">
+                <span></span><span></span><span></span>
+            </span>
+            bash
+        </div>
+        <button class="code-copy-btn" aria-label="Copier">
+            <span class="material-symbols-outlined">content_copy</span>
+            Copier
+        </button>
+    </div>
+    <pre><code class="language-bash"><span class="cmt"># Lister les images</span>
+<span class="fn">docker</span> images
+
+<span class="cmt"># Télécharger une image</span>
+<span class="fn">docker</span> pull nginx:alpine
+
+<span class="cmt"># Lancer un conteneur</span>
+<span class="fn">docker</span> run <span class="op">-d</span> <span class="op">-p</span> <span class="num">8080</span>:<span class="num">80</span> <span class="op">--name</span> mon-nginx nginx:alpine
+
+<span class="cmt"># Lister les conteneurs actifs</span>
+<span class="fn">docker</span> ps
+
+<span class="cmt"># Voir les logs</span>
+<span class="fn">docker</span> logs mon-nginx
+
+<span class="cmt"># Arrêter et supprimer</span>
+<span class="fn">docker</span> stop mon-nginx
+<span class="fn">docker</span> rm mon-nginx</code></pre>
+</div>
+
+<h2>Premier Dockerfile</h2>
+
+<p>Créons une image pour une application Node.js :</p>
+
+<div class="code-block">
+    <div class="code-block-header">
+        <div class="code-block-lang">
+            <span class="code-block-dots">
+                <span></span><span></span><span></span>
+            </span>
+            dockerfile
+        </div>
+        <button class="code-copy-btn" aria-label="Copier">
+            <span class="material-symbols-outlined">content_copy</span>
+            Copier
+        </button>
+    </div>
+    <pre><code class="language-dockerfile"><span class="cmt"># Image de base</span>
+<span class="kw">FROM</span> node:<span class="num">20</span>-alpine
+
+<span class="cmt"># Répertoire de travail</span>
+<span class="kw">WORKDIR</span> /app
+
+<span class="cmt"># Copier les fichiers de dépendances</span>
+<span class="kw">COPY</span> package*.json ./
+
+<span class="cmt"># Installer les dépendances</span>
+<span class="kw">RUN</span> npm ci --only=production
+
+<span class="cmt"># Copier le code source</span>
+<span class="kw">COPY</span> . .
+
+<span class="cmt"># Port exposé</span>
+<span class="kw">EXPOSE</span> <span class="num">3000</span>
+
+<span class="cmt"># Commande de lancement</span>
+<span class="kw">CMD</span> [<span class="str">"node"</span>, <span class="str">"server.js"</span>]</code></pre>
+</div>
+
+<div class="info-box tip">
+    <span class="material-symbols-outlined">lightbulb</span>
+    <div>
+        <strong>Bonne pratique</strong><br>
+        Copiez d'abord <code>package.json</code> avant le reste du code. Docker met en cache 
+        chaque couche (layer), donc si vos dépendances n'ont pas changé, l'installation sera instantanée.
+    </div>
+</div>
+
+<h2>Résumé</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Commande</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td><code>docker pull</code></td><td>Télécharger une image</td></tr>
+        <tr><td><code>docker run</code></td><td>Créer et lancer un conteneur</td></tr>
+        <tr><td><code>docker ps</code></td><td>Lister les conteneurs actifs</td></tr>
+        <tr><td><code>docker build</code></td><td>Construire une image depuis un Dockerfile</td></tr>
+        <tr><td><code>docker stop</code></td><td>Arrêter un conteneur</td></tr>
+    </tbody>
+</table>

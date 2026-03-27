@@ -1,0 +1,182 @@
+<!-- Pas de html/head/body — juste le contenu -->
+
+<h2>Qu'est-ce que le HTML ?</h2>
+
+<p>
+    <strong>HTML</strong> (HyperText Markup Language) est le langage de balisage standard 
+    pour créer des pages web. Il décrit la <em>structure</em> d'une page web à l'aide 
+    de balises (tags).
+</p>
+
+<div class="info-box note">
+    <span class="material-symbols-outlined">info</span>
+    <div>
+        <strong>À savoir</strong><br>
+        HTML n'est pas un langage de programmation. C'est un langage de <strong>balisage</strong> 
+        qui structure le contenu.
+    </div>
+</div>
+
+<h2>Votre première page HTML</h2>
+
+<p>Voici la structure minimale d'un document HTML :</p>
+
+<div class="code-block">
+    <div class="code-block-header">
+        <div class="code-block-lang">
+            <span class="code-block-dots">
+                <span></span><span></span><span></span>
+            </span>
+            html
+        </div>
+        <button class="code-copy-btn" aria-label="Copier">
+            <span class="material-symbols-outlined">content_copy</span>
+            Copier
+        </button>
+    </div>
+    <pre><code class="language-html"><span class="tag">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="val">"fr"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="val">"UTF-8"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;title&gt;</span>Ma première page<span class="tag">&lt;/title&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+    <span class="tag">&lt;h1&gt;</span>Bonjour le monde !<span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;p&gt;</span>Ceci est mon premier paragraphe.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></code></pre>
+</div>
+
+<h3>Explication ligne par ligne</h3>
+
+<ul>
+    <li><code>&lt;!DOCTYPE html&gt;</code> — Déclare le type de document (HTML5)</li>
+    <li><code>&lt;html&gt;</code> — L'élément racine de la page</li>
+    <li><code>&lt;head&gt;</code> — Contient les métadonnées (titre, encodage, CSS...)</li>
+    <li><code>&lt;body&gt;</code> — Contient le contenu visible de la page</li>
+</ul>
+
+<h2>Les concepts clés</h2>
+
+<h3>Balises et éléments</h3>
+
+<p>
+    Une <strong>balise</strong> HTML est composée d'un nom entouré de chevrons. 
+    La plupart des éléments ont une balise ouvrante et une balise fermante :
+</p>
+
+<pre><code class="language-html"><span class="tag">&lt;p&gt;</span>Ceci est un paragraphe<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;strong&gt;</span>Texte important<span class="tag">&lt;/strong&gt;</span></code></pre>
+
+<h3>Attributs</h3>
+
+<p>
+    Les attributs fournissent des informations supplémentaires sur un élément :
+</p>
+
+<pre><code class="language-html"><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"https://example.com"</span> <span class="attr">target</span>=<span class="val">"_blank"</span><span class="tag">&gt;</span>
+    Visitez ce site
+<span class="tag">&lt;/a&gt;</span>
+
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="val">"photo.jpg"</span> <span class="attr">alt</span>=<span class="val">"Description de l'image"</span><span class="tag">&gt;</span></code></pre>
+
+<div class="info-box tip">
+    <span class="material-symbols-outlined">lightbulb</span>
+    <div>
+        <strong>Bonne pratique</strong><br>
+        Utilisez toujours l'attribut <code>alt</code> sur les images pour l'accessibilité 
+        et le référencement.
+    </div>
+</div>
+
+<h2>Outils nécessaires</h2>
+
+<p>Pour commencer à écrire du HTML, vous avez besoin de :</p>
+
+<ol>
+    <li>Un <strong>éditeur de code</strong> — VS Code, Sublime Text, ou même le Bloc-notes</li>
+    <li>Un <strong>navigateur web</strong> — Chrome, Firefox, Edge</li>
+    <li>De la <strong>curiosité</strong> et de la patience 😄</li>
+</ol>
+
+<div class="info-box warning">
+    <span class="material-symbols-outlined">warning</span>
+    <div>
+        <strong>Attention</strong><br>
+        N'utilisez jamais Microsoft Word pour écrire du HTML ! Les traitements de texte 
+        ajoutent du formatage invisible qui casse votre code.
+    </div>
+</div>
+
+<h2>Exercice pratique</h2>
+
+<p>Créez un fichier <code>index.html</code> avec le contenu suivant et ouvrez-le dans votre navigateur :</p>
+
+<div class="code-block">
+    <div class="code-block-header">
+        <div class="code-block-lang">
+            <span class="code-block-dots">
+                <span></span><span></span><span></span>
+            </span>
+            html
+        </div>
+        <button class="code-copy-btn" aria-label="Copier">
+            <span class="material-symbols-outlined">content_copy</span>
+            Copier
+        </button>
+    </div>
+    <pre><code class="language-html"><span class="tag">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="val">"fr"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="val">"UTF-8"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;title&gt;</span>Mon Portfolio<span class="tag">&lt;/title&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+    <span class="tag">&lt;h1&gt;</span>Mon Portfolio<span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;p&gt;</span>Bienvenue sur mon site personnel.<span class="tag">&lt;/p&gt;</span>
+    
+    <span class="tag">&lt;h2&gt;</span>À propos<span class="tag">&lt;/h2&gt;</span>
+    <span class="tag">&lt;p&gt;</span>Je suis développeur web en formation.<span class="tag">&lt;/p&gt;</span>
+    
+    <span class="tag">&lt;h2&gt;</span>Mes compétences<span class="tag">&lt;/h2&gt;</span>
+    <span class="tag">&lt;ul&gt;</span>
+        <span class="tag">&lt;li&gt;</span>HTML<span class="tag">&lt;/li&gt;</span>
+        <span class="tag">&lt;li&gt;</span>CSS<span class="tag">&lt;/li&gt;</span>
+        <span class="tag">&lt;li&gt;</span>JavaScript<span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;/ul&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></code></pre>
+</div>
+
+<h2>Résumé</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Concept</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>&lt;!DOCTYPE&gt;</code></td>
+            <td>Déclaration du type de document</td>
+        </tr>
+        <tr>
+            <td>Élément</td>
+            <td>Balise ouvrante + contenu + balise fermante</td>
+        </tr>
+        <tr>
+            <td>Attribut</td>
+            <td>Information supplémentaire sur un élément</td>
+        </tr>
+        <tr>
+            <td><code>&lt;head&gt;</code></td>
+            <td>Métadonnées du document</td>
+        </tr>
+        <tr>
+            <td><code>&lt;body&gt;</code></td>
+            <td>Contenu visible de la page</td>
+        </tr>
+    </tbody>
+</table>

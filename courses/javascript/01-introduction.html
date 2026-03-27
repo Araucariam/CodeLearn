@@ -1,0 +1,148 @@
+<h2>Qu'est-ce que JavaScript ?</h2>
+
+<p>
+    <strong>JavaScript</strong> est un langage de programmation qui permet de rendre 
+    les pages web <em>interactives</em>. C'est le troisième pilier du développement web, 
+    avec HTML (structure) et CSS (style).
+</p>
+
+<div class="info-box note">
+    <span class="material-symbols-outlined">info</span>
+    <div>
+        <strong>Le saviez-vous ?</strong><br>
+        JavaScript a été créé en seulement <strong>10 jours</strong> par Brendan Eich en 1995. 
+        Aujourd'hui, c'est le langage le plus utilisé au monde !
+    </div>
+</div>
+
+<h2>Où s'exécute JavaScript ?</h2>
+
+<p>JavaScript peut s'exécuter dans deux environnements :</p>
+
+<ul>
+    <li><strong>Le navigateur</strong> — Chrome, Firefox, Safari (moteur V8, SpiderMonkey...)</li>
+    <li><strong>Le serveur</strong> — avec Node.js ou Deno</li>
+</ul>
+
+<h2>Premier script</h2>
+
+<h3>Dans la console du navigateur</h3>
+
+<p>Ouvrez la console de votre navigateur (<kbd>F12</kbd> → onglet Console) et tapez :</p>
+
+<pre><code class="language-javascript"><span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"Bonjour JavaScript !"</span>);
+</code></pre>
+
+<div class="output-block">Bonjour JavaScript !</div>
+
+<h3>Dans un fichier HTML</h3>
+
+<div class="code-block">
+    <div class="code-block-header">
+        <div class="code-block-lang">
+            <span class="code-block-dots">
+                <span></span><span></span><span></span>
+            </span>
+            html
+        </div>
+        <button class="code-copy-btn" aria-label="Copier">
+            <span class="material-symbols-outlined">content_copy</span>
+            Copier
+        </button>
+    </div>
+    <pre><code class="language-html"><span class="tag">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+    <span class="tag">&lt;h1</span> <span class="attr">id</span>=<span class="val">"titre"</span><span class="tag">&gt;</span>Bonjour<span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;button</span> <span class="attr">onclick</span>=<span class="val">"changerTexte()"</span><span class="tag">&gt;</span>Cliquez ici<span class="tag">&lt;/button&gt;</span>
+
+    <span class="tag">&lt;script&gt;</span>
+        <span class="kw">function</span> <span class="fn">changerTexte</span>() {
+            <span class="kw">const</span> titre <span class="op">=</span> document.<span class="fn">getElementById</span>(<span class="str">"titre"</span>);
+            titre.textContent <span class="op">=</span> <span class="str">"JavaScript fonctionne !"</span>;
+        }
+    <span class="tag">&lt;/script&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></code></pre>
+</div>
+
+<h2>Les types de données</h2>
+
+<p>JavaScript possède plusieurs types de données fondamentaux :</p>
+
+<pre><code class="language-javascript"><span class="cmt">// String (chaîne de caractères)</span>
+<span class="kw">const</span> nom <span class="op">=</span> <span class="str">"Alice"</span>;
+
+<span class="cmt">// Number (nombre)</span>
+<span class="kw">const</span> age <span class="op">=</span> <span class="num">25</span>;
+<span class="kw">const</span> pi <span class="op">=</span> <span class="num">3.14159</span>;
+
+<span class="cmt">// Boolean (booléen)</span>
+<span class="kw">const</span> estDev <span class="op">=</span> <span class="kw">true</span>;
+
+<span class="cmt">// Array (tableau)</span>
+<span class="kw">const</span> langages <span class="op">=</span> [<span class="str">"HTML"</span>, <span class="str">"CSS"</span>, <span class="str">"JS"</span>];
+
+<span class="cmt">// Object (objet)</span>
+<span class="kw">const</span> personne <span class="op">=</span> {
+    nom: <span class="str">"Alice"</span>,
+    age: <span class="num">25</span>,
+    langages: [<span class="str">"JS"</span>, <span class="str">"Go"</span>]
+};
+
+<span class="fn">console</span>.<span class="fn">log</span>(personne.nom);      <span class="cmt">// "Alice"</span>
+<span class="fn">console</span>.<span class="fn">log</span>(langages[<span class="num">0</span>]);      <span class="cmt">// "HTML"</span>
+<span class="fn">console</span>.<span class="fn">log</span>(<span class="kw">typeof</span> age);       <span class="cmt">// "number"</span></code></pre>
+
+<div class="info-box tip">
+    <span class="material-symbols-outlined">lightbulb</span>
+    <div>
+        <strong>Conseil</strong><br>
+        Utilisez <code>const</code> par défaut, et <code>let</code> uniquement si la variable 
+        doit changer. N'utilisez <strong>jamais</strong> <code>var</code> dans du code moderne.
+    </div>
+</div>
+
+<h2>Résumé</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Concept</th>
+            <th>Exemple</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Afficher dans la console</td>
+            <td><code>console.log("texte")</code></td>
+        </tr>
+        <tr>
+            <td>Déclarer une variable</td>
+            <td><code>const x = 10;</code></td>
+        </tr>
+        <tr>
+            <td>Type string</td>
+            <td><code>"Bonjour"</code></td>
+        </tr>
+        <tr>
+            <td>Type number</td>
+            <td><code>42</code> ou <code>3.14</code></td>
+        </tr>
+        <tr>
+            <td>Type boolean</td>
+            <td><code>true</code> / <code>false</code></td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="info-box danger">
+    <span class="material-symbols-outlined">error</span>
+    <div>
+        <strong>Erreur courante</strong><br>
+        Ne confondez pas <code>=</code> (assignation) avec <code>===</code> (comparaison stricte) !
+        <pre><code class="language-javascript"><span class="kw">let</span> x <span class="op">=</span> <span class="num">5</span>;        <span class="cmt">// Assignation</span>
+x <span class="op">===</span> <span class="num">5</span>;           <span class="cmt">// Comparaison → true</span>
+x <span class="op">===</span> <span class="str">"5"</span>;         <span class="cmt">// Comparaison → false</span></code></pre>
+    </div>
+</div>

@@ -1,0 +1,161 @@
+<h2>Qu'est-ce que le HTML ?</h2>
+
+<p>
+    <strong>HTML</strong> (HyperText Markup Language) est le langage de balisage standard 
+    pour créer des pages web. Il décrit la <em>structure</em> d'une page web à l'aide 
+    de balises (tags).
+</p>
+
+<div class="info-box note">
+    <span class="material-symbols-outlined">info</span>
+    <div>
+        <strong>À savoir</strong><br>
+        HTML n'est pas un langage de programmation. C'est un langage de <strong>balisage</strong> 
+        qui structure le contenu.
+    </div>
+</div>
+
+<h2>Votre première page HTML</h2>
+
+<p>Voici la structure minimale d'un document HTML :</p>
+
+<div class="code-block">
+    <div class="code-block-header">
+        <div class="code-block-lang">
+            <span class="code-block-dots"><span></span><span></span><span></span></span>
+            html
+        </div>
+        <button class="code-copy-btn" type="button" aria-label="Copier">
+            <span class="material-symbols-outlined">content_copy</span> Copier
+        </button>
+    </div>
+    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ma première page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Bonjour le monde !&lt;/h1&gt;
+    &lt;p&gt;Ceci est mon premier paragraphe.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+
+<h3>Explication ligne par ligne</h3>
+
+<ul>
+    <li><code>&lt;!DOCTYPE html&gt;</code> — Déclare le type de document (HTML5)</li>
+    <li><code>&lt;html&gt;</code> — L'élément racine de la page</li>
+    <li><code>&lt;head&gt;</code> — Contient les métadonnées (titre, encodage, CSS...)</li>
+    <li><code>&lt;body&gt;</code> — Contient le contenu visible de la page</li>
+</ul>
+
+<h2>Les concepts clés</h2>
+
+<h3>Balises et éléments</h3>
+
+<p>
+    Une <strong>balise</strong> HTML est composée d'un nom entouré de chevrons. 
+    La plupart des éléments ont une balise ouvrante et une balise fermante :
+</p>
+
+<pre><code class="language-html">&lt;p&gt;Ceci est un paragraphe&lt;/p&gt;
+&lt;strong&gt;Texte important&lt;/strong&gt;</code></pre>
+
+<h3>Attributs</h3>
+
+<p>Les attributs fournissent des informations supplémentaires :</p>
+
+<pre><code class="language-html">&lt;a href="https://example.com" target="_blank"&gt;
+    Visitez ce site
+&lt;/a&gt;
+
+&lt;img src="photo.jpg" alt="Description de l'image"&gt;</code></pre>
+
+<div class="info-box tip">
+    <span class="material-symbols-outlined">lightbulb</span>
+    <div>
+        <strong>Bonne pratique</strong><br>
+        Utilisez toujours l'attribut <code>alt</code> sur les images pour l'accessibilité.
+    </div>
+</div>
+
+<h2>🧪 Essayez vous-même !</h2>
+
+<p>Modifiez le code ci-dessous et cliquez sur <strong>Exécuter</strong> pour voir le résultat :</p>
+
+<!-- ÉDITEUR LIVE INTÉGRÉ -->
+<div class="editor-placeholder"
+     data-html="&lt;h1 style='color: #4a6cf7;'&gt;🎉 Bonjour !&lt;/h1&gt;
+&lt;p&gt;Modifiez ce code HTML et cliquez &lt;strong&gt;Exécuter&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+    &lt;li&gt;Ajoutez des éléments&lt;/li&gt;
+    &lt;li&gt;Changez le texte&lt;/li&gt;
+    &lt;li&gt;Expérimentez !&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;a href='#'&gt;Ceci est un lien&lt;/a&gt;"
+     data-css="body {
+    font-family: sans-serif;
+    max-width: 500px;
+}
+h1 {
+    border-bottom: 2px solid #eee;
+    padding-bottom: 8px;
+}
+ul {
+    background: #f0f4ff;
+    padding: 16px 32px;
+    border-radius: 8px;
+}
+li {
+    margin: 4px 0;
+}
+a {
+    color: #4a6cf7;
+}"
+     data-js="console.log('Page chargée !');">
+</div>
+
+<h2>Résumé</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Concept</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>&lt;!DOCTYPE&gt;</code></td>
+            <td>Déclaration du type de document</td>
+        </tr>
+        <tr>
+            <td>Élément</td>
+            <td>Balise ouvrante + contenu + balise fermante</td>
+        </tr>
+        <tr>
+            <td>Attribut</td>
+            <td>Information supplémentaire sur un élément</td>
+        </tr>
+        <tr>
+            <td><code>&lt;head&gt;</code></td>
+            <td>Métadonnées du document</td>
+        </tr>
+        <tr>
+            <td><code>&lt;body&gt;</code></td>
+            <td>Contenu visible de la page</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="info-box warning">
+    <span class="material-symbols-outlined">warning</span>
+    <div>
+        <strong>Attention</strong><br>
+        N'utilisez jamais Microsoft Word pour écrire du HTML ! Utilisez un éditeur de code comme VS Code.
+    </div>
+</div>

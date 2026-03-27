@@ -1,0 +1,76 @@
+<h2>Les balises HTML essentielles</h2>
+
+<p>
+    HTML dispose de plus de 100 balises, mais une vingtaine suffit pour la plupart des pages web.
+    Découvrons les plus importantes.
+</p>
+
+<h2>Balises de texte</h2>
+
+<h3>Titres</h3>
+
+<p>HTML propose 6 niveaux de titres, de <code>&lt;h1&gt;</code> (le plus important) à <code>&lt;h6&gt;</code> :</p>
+
+<pre><code class="language-html"><span class="tag">&lt;h1&gt;</span>Titre principal<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;h2&gt;</span>Sous-titre<span class="tag">&lt;/h2&gt;</span>
+<span class="tag">&lt;h3&gt;</span>Section<span class="tag">&lt;/h3&gt;</span></code></pre>
+
+<div class="info-box tip">
+    <span class="material-symbols-outlined">lightbulb</span>
+    <div>
+        <strong>Règle SEO</strong><br>
+        N'utilisez qu'un seul <code>&lt;h1&gt;</code> par page. 
+        Respectez la hiérarchie : ne sautez pas de <code>&lt;h2&gt;</code> à <code>&lt;h4&gt;</code>.
+    </div>
+</div>
+
+<h3>Paragraphes et mise en forme</h3>
+
+<pre><code class="language-html"><span class="tag">&lt;p&gt;</span>Un paragraphe de texte.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;strong&gt;</span>Texte important (gras)<span class="tag">&lt;/strong&gt;</span>
+<span class="tag">&lt;em&gt;</span>Texte accentué (italique)<span class="tag">&lt;/em&gt;</span>
+<span class="tag">&lt;br&gt;</span> <span class="cmt">&lt;!-- Saut de ligne --&gt;</span>
+<span class="tag">&lt;hr&gt;</span> <span class="cmt">&lt;!-- Ligne horizontale --&gt;</span></code></pre>
+
+<h2>Balises de structure</h2>
+
+<pre><code class="language-html"><span class="tag">&lt;div&gt;</span>Conteneur générique (bloc)<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;span&gt;</span>Conteneur en ligne<span class="tag">&lt;/span&gt;</span></code></pre>
+
+<h2>Listes</h2>
+
+<pre><code class="language-html"><span class="cmt">&lt;!-- Liste non ordonnée --&gt;</span>
+<span class="tag">&lt;ul&gt;</span>
+    <span class="tag">&lt;li&gt;</span>Élément 1<span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;li&gt;</span>Élément 2<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ul&gt;</span>
+
+<span class="cmt">&lt;!-- Liste ordonnée --&gt;</span>
+<span class="tag">&lt;ol&gt;</span>
+    <span class="tag">&lt;li&gt;</span>Première étape<span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;li&gt;</span>Deuxième étape<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ol&gt;</span></code></pre>
+
+<h2>Liens et images</h2>
+
+<pre><code class="language-html"><span class="cmt">&lt;!-- Lien --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"https://example.com"</span><span class="tag">&gt;</span>Cliquez ici<span class="tag">&lt;/a&gt;</span>
+
+<span class="cmt">&lt;!-- Image --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="val">"photo.jpg"</span> <span class="attr">alt</span>=<span class="val">"Description"</span> <span class="attr">width</span>=<span class="val">"300"</span><span class="tag">&gt;</span></code></pre>
+
+<h2>Résumé</h2>
+
+<table>
+    <thead>
+        <tr><th>Balise</th><th>Rôle</th></tr>
+    </thead>
+    <tbody>
+        <tr><td><code>&lt;h1&gt;...&lt;h6&gt;</code></td><td>Titres</td></tr>
+        <tr><td><code>&lt;p&gt;</code></td><td>Paragraphe</td></tr>
+        <tr><td><code>&lt;a&gt;</code></td><td>Lien hypertexte</td></tr>
+        <tr><td><code>&lt;img&gt;</code></td><td>Image</td></tr>
+        <tr><td><code>&lt;ul&gt; / &lt;ol&gt;</code></td><td>Listes</td></tr>
+        <tr><td><code>&lt;div&gt; / &lt;span&gt;</code></td><td>Conteneurs</td></tr>
+    </tbody>
+</table>

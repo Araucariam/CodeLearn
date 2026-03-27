@@ -1,0 +1,294 @@
+/* ══════════════════════════════════════
+   CODE-BLOCKS.CSS — pre, code styling
+   ══════════════════════════════════════ */
+
+/* ── Inline Code ── */
+code:not(pre code) {
+    padding: 2px 8px;
+    background: var(--bg-code);
+    color: var(--text-code);
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    font-weight: 500;
+    border: 1px solid var(--border-light);
+    word-break: break-word;
+}
+
+/* ── Code Block Container ── */
+.code-block {
+    position: relative;
+    margin: 24px 0;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--bg-code-block);
+    border: 1px solid oklch(0.25 0.01 260);
+    box-shadow: var(--shadow-md);
+}
+
+/* Code Block Header */
+.code-block-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px;
+    background: oklch(0.16 0.01 260);
+    border-bottom: 1px solid oklch(0.22 0.01 260);
+}
+
+.code-block-lang {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: oklch(0.65 0.02 260);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.code-block-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.code-block-dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.code-block-dots span:nth-child(1) { background: oklch(0.65 0.22 25); }
+.code-block-dots span:nth-child(2) { background: oklch(0.78 0.16 80); }
+.code-block-dots span:nth-child(3) { background: oklch(0.65 0.18 145); }
+
+/* Copy Button */
+.code-copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    background: oklch(0.25 0.01 260);
+    border: 1px solid oklch(0.30 0.01 260);
+    border-radius: 6px;
+    color: oklch(0.65 0.02 260);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.code-copy-btn:hover {
+    background: oklch(0.30 0.01 260);
+    color: oklch(0.85 0.02 260);
+}
+
+.code-copy-btn.copied {
+    color: var(--success);
+    border-color: var(--success);
+}
+
+.code-copy-btn .material-symbols-outlined {
+    font-size: 14px;
+}
+
+/* ── Pre Block ── */
+pre {
+    margin: 0;
+    padding: 20px 24px;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: var(--text-code-block);
+    tab-size: 4;
+    -moz-tab-size: 4;
+    scrollbar-width: thin;
+}
+
+pre::-webkit-scrollbar {
+    height: 6px;
+}
+
+pre::-webkit-scrollbar-track {
+    background: oklch(0.12 0.005 260);
+}
+
+pre::-webkit-scrollbar-thumb {
+    background: oklch(0.30 0.01 260);
+    border-radius: 10px;
+}
+
+/* Standalone pre without .code-block wrapper */
+pre:not(.code-block pre) {
+    background: var(--bg-code-block);
+    border-radius: var(--radius-md);
+    border: 1px solid oklch(0.25 0.01 260);
+    margin: 24px 0;
+    padding: 20px 24px;
+}
+
+/* ── Syntax Highlighting (Manual Classes) ── */
+
+/* Keywords: if, for, const, let, var, function, return, import, etc. */
+.token-keyword,
+.kw {
+    color: oklch(0.72 0.18 300);
+    font-weight: 500;
+}
+
+/* Strings */
+.token-string,
+.str {
+    color: oklch(0.75 0.16 145);
+}
+
+/* Numbers */
+.token-number,
+.num {
+    color: oklch(0.78 0.16 80);
+}
+
+/* Comments */
+.token-comment,
+.cmt {
+    color: oklch(0.50 0.02 260);
+    font-style: italic;
+}
+
+/* Functions */
+.token-function,
+.fn {
+    color: oklch(0.75 0.18 220);
+}
+
+/* Types / Classes */
+.token-type,
+.typ {
+    color: oklch(0.75 0.14 60);
+}
+
+/* Tags (HTML) */
+.token-tag,
+.tag {
+    color: oklch(0.70 0.20 25);
+}
+
+/* Attributes */
+.token-attr,
+.attr {
+    color: oklch(0.78 0.14 80);
+}
+
+/* Values (attribute values) */
+.token-value,
+.val {
+    color: oklch(0.75 0.16 145);
+}
+
+/* Operators */
+.token-operator,
+.op {
+    color: oklch(0.78 0.12 200);
+}
+
+/* Punctuation */
+.token-punctuation,
+.punc {
+    color: oklch(0.60 0.02 260);
+}
+
+/* Property */
+.token-property,
+.prop {
+    color: oklch(0.75 0.18 195);
+}
+
+/* Variable highlight */
+.token-variable,
+.var {
+    color: oklch(0.80 0.12 350);
+}
+
+/* Line Numbers */
+.line-numbers {
+    counter-reset: line;
+}
+
+.line-numbers .line::before {
+    counter-increment: line;
+    content: counter(line);
+    display: inline-block;
+    width: 2em;
+    margin-right: 1.5em;
+    text-align: right;
+    color: oklch(0.35 0.01 260);
+    font-size: 0.8em;
+    user-select: none;
+}
+
+/* ── Code Highlight Line ── */
+.highlight-line {
+    display: block;
+    background: oklch(0.55 0.24 260 / 0.08);
+    margin: 0 -24px;
+    padding: 0 24px;
+    border-left: 3px solid var(--primary-400);
+}
+
+/* ── Output Block ── */
+.output-block {
+    margin: 16px 0 24px;
+    padding: 16px 20px;
+    background: oklch(0.13 0.008 145);
+    border: 1px solid oklch(0.25 0.02 145);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: oklch(0.80 0.08 145);
+}
+
+.output-block::before {
+    content: '▸ Output';
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: oklch(0.55 0.08 145);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+/* ── Diff Blocks ── */
+.diff-add {
+    background: oklch(0.65 0.18 145 / 0.10);
+    color: oklch(0.80 0.12 145);
+}
+
+.diff-remove {
+    background: oklch(0.60 0.22 25 / 0.10);
+    color: oklch(0.80 0.12 25);
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+/* ── Filename tab ── */
+.code-filename {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    background: oklch(0.20 0.01 260);
+    border-radius: 6px 6px 0 0;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: oklch(0.65 0.02 260);
+    margin-bottom: -1px;
+    position: relative;
+    z-index: 1;
+}
+
+.code-filename .material-symbols-outlined {
+    font-size: 14px;
+}

@@ -1,0 +1,128 @@
+<h2>Qu'est-ce que Go ?</h2>
+
+<p>
+    <strong>Go</strong> (ou Golang) est un langage de programmation open source créé par 
+    <strong>Google</strong> en 2009. Il a été conçu par Robert Griesemer, Rob Pike et 
+    Ken Thompson pour être simple, performant et adapté aux systèmes modernes.
+</p>
+
+<div class="info-box note">
+    <span class="material-symbols-outlined">info</span>
+    <div>
+        <strong>Pourquoi Go ?</strong><br>
+        Go combine la performance du C avec la simplicité de Python. Il est particulièrement 
+        adapté pour les <strong>microservices</strong>, les <strong>API REST</strong> et les 
+        <strong>outils CLI</strong>.
+    </div>
+</div>
+
+<h2>Installation</h2>
+
+<p>Téléchargez Go depuis <a href="https://go.dev/dl/" target="_blank">go.dev/dl</a>, puis vérifiez l'installation :</p>
+
+<pre><code class="language-bash"><span class="fn">go</span> version
+<span class="cmt"># go version go1.22.0 linux/amd64</span></code></pre>
+
+<h2>Hello World</h2>
+
+<p>Créez un fichier <code>main.go</code> :</p>
+
+<div class="code-block">
+    <div class="code-block-header">
+        <div class="code-block-lang">
+            <span class="code-block-dots">
+                <span></span><span></span><span></span>
+            </span>
+            go
+        </div>
+        <button class="code-copy-btn" aria-label="Copier">
+            <span class="material-symbols-outlined">content_copy</span>
+            Copier
+        </button>
+    </div>
+    <pre><code class="language-go"><span class="kw">package</span> main
+
+<span class="kw">import</span> <span class="str">"fmt"</span>
+
+<span class="kw">func</span> <span class="fn">main</span>() {
+    fmt.<span class="fn">Println</span>(<span class="str">"Bonjour, Go !"</span>)
+}</code></pre>
+</div>
+
+<p>Exécutez-le :</p>
+
+<pre><code class="language-bash"><span class="fn">go</span> run main.go</code></pre>
+
+<div class="output-block">Bonjour, Go !</div>
+
+<h2>Points forts de Go</h2>
+
+<ul>
+    <li><strong>Compilation rapide</strong> — Compilation en quelques secondes</li>
+    <li><strong>Typage statique</strong> — Détection des erreurs à la compilation</li>
+    <li><strong>Goroutines</strong> — Concurrence légère et efficace</li>
+    <li><strong>Garbage collector</strong> — Gestion automatique de la mémoire</li>
+    <li><strong>Un seul binaire</strong> — Déploiement simplifié</li>
+    <li><strong>Bibliothèque standard riche</strong> — HTTP, JSON, tests intégrés</li>
+</ul>
+
+<h2>Variables et types</h2>
+
+<div class="code-block">
+    <div class="code-block-header">
+        <div class="code-block-lang">
+            <span class="code-block-dots">
+                <span></span><span></span><span></span>
+            </span>
+            go
+        </div>
+        <button class="code-copy-btn" aria-label="Copier">
+            <span class="material-symbols-outlined">content_copy</span>
+            Copier
+        </button>
+    </div>
+    <pre><code class="language-go"><span class="kw">package</span> main
+
+<span class="kw">import</span> <span class="str">"fmt"</span>
+
+<span class="kw">func</span> <span class="fn">main</span>() {
+    <span class="cmt">// Déclaration explicite</span>
+    <span class="kw">var</span> nom <span class="typ">string</span> <span class="op">=</span> <span class="str">"Alice"</span>
+    <span class="kw">var</span> age <span class="typ">int</span> <span class="op">=</span> <span class="num">25</span>
+    
+    <span class="cmt">// Déclaration courte (inférence de type)</span>
+    langage <span class="op">:=</span> <span class="str">"Go"</span>
+    pi <span class="op">:=</span> <span class="num">3.14159</span>
+    estDev <span class="op">:=</span> <span class="kw">true</span>
+
+    fmt.<span class="fn">Printf</span>(<span class="str">"%s a %d ans et code en %s\n"</span>, nom, age, langage)
+    fmt.<span class="fn">Println</span>(<span class="str">"Pi ="</span>, pi, <span class="str">"| Dev:"</span>, estDev)
+}</code></pre>
+</div>
+
+<div class="info-box tip">
+    <span class="material-symbols-outlined">lightbulb</span>
+    <div>
+        <strong>Astuce Go</strong><br>
+        Utilisez <code>:=</code> pour les déclarations courtes à l'intérieur des fonctions. 
+        C'est la manière idiomatique d'écrire du Go.
+    </div>
+</div>
+
+<h2>Résumé</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Caractéristique</th>
+            <th>Valeur</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>Créateur</td><td>Google (2009)</td></tr>
+        <tr><td>Typage</td><td>Statique, fort</td></tr>
+        <tr><td>Paradigme</td><td>Impératif, concurrent</td></tr>
+        <tr><td>Compilation</td><td>Binaire natif</td></tr>
+        <tr><td>Cas d'usage</td><td>API, CLI, microservices, cloud</td></tr>
+    </tbody>
+</table>

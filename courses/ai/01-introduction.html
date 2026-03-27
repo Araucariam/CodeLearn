@@ -1,0 +1,148 @@
+<h2>L'IA dans le développement</h2>
+
+<p>
+    L'<strong>Intelligence Artificielle</strong> transforme profondément la façon dont nous 
+    écrivons du code. Des outils comme GitHub Copilot, ChatGPT, et Claude permettent aux 
+    développeurs de coder plus vite et de résoudre des problèmes complexes.
+</p>
+
+<div class="info-box note">
+    <span class="material-symbols-outlined">info</span>
+    <div>
+        <strong>L'IA ne remplace pas le développeur</strong><br>
+        L'IA est un <strong>outil</strong>, pas un remplacement. Comprendre les fondamentaux 
+        reste essentiel pour évaluer et corriger les suggestions de l'IA.
+    </div>
+</div>
+
+<h2>Les outils IA pour les développeurs</h2>
+
+<h3>Assistants de code</h3>
+
+<ul>
+    <li><strong>GitHub Copilot</strong> — Autocomplétion intelligente dans l'éditeur</li>
+    <li><strong>Cursor</strong> — Éditeur de code avec IA intégrée</li>
+    <li><strong>Codeium</strong> — Alternative gratuite à Copilot</li>
+    <li><strong>Tabnine</strong> — Complétion basée sur vos patterns de code</li>
+</ul>
+
+<h3>Chatbots IA</h3>
+
+<ul>
+    <li><strong>ChatGPT</strong> (OpenAI) — Modèle polyvalent</li>
+    <li><strong>Claude</strong> (Anthropic) — Excellent pour le code et l'analyse</li>
+    <li><strong>Gemini</strong> (Google) — Intégré à l'écosystème Google</li>
+</ul>
+
+<h2>Comment utiliser l'IA efficacement</h2>
+
+<h3>✅ Bons usages</h3>
+
+<ul>
+    <li>Générer du <strong>boilerplate</strong> (code de base répétitif)</li>
+    <li>Comprendre du code existant</li>
+    <li>Écrire des <strong>tests unitaires</strong></li>
+    <li>Convertir du code entre langages</li>
+    <li>Trouver et corriger des bugs</li>
+    <li>Apprendre de nouvelles technologies</li>
+</ul>
+
+<h3>⚠️ Précautions</h3>
+
+<div class="info-box warning">
+    <span class="material-symbols-outlined">warning</span>
+    <div>
+        <strong>Attention aux hallucinations</strong><br>
+        L'IA peut générer du code qui <strong>semble correct mais ne l'est pas</strong>. 
+        Vérifiez toujours le code généré, testez-le, et comprenez ce qu'il fait.
+    </div>
+</div>
+
+<h2>Exemple : Demander à l'IA</h2>
+
+<p>Voici un exemple de prompt efficace :</p>
+
+<div class="code-block">
+    <div class="code-block-header">
+        <div class="code-block-lang">
+            <span class="code-block-dots">
+                <span></span><span></span><span></span>
+            </span>
+            prompt
+        </div>
+        <button class="code-copy-btn" aria-label="Copier">
+            <span class="material-symbols-outlined">content_copy</span>
+            Copier
+        </button>
+    </div>
+    <pre><code>Écris une fonction JavaScript qui :
+- Prend un tableau de nombres en paramètre
+- Retourne un objet avec min, max, moyenne
+- Gère le cas d'un tableau vide (retourner null)
+- Ajoute des commentaires JSDoc
+- Inclus 3 tests unitaires avec console.assert</code></pre>
+</div>
+
+<p>Résultat que l'IA pourrait générer :</p>
+
+<div class="code-block">
+    <div class="code-block-header">
+        <div class="code-block-lang">
+            <span class="code-block-dots">
+                <span></span><span></span><span></span>
+            </span>
+            javascript
+        </div>
+        <button class="code-copy-btn" aria-label="Copier">
+            <span class="material-symbols-outlined">content_copy</span>
+            Copier
+        </button>
+    </div>
+    <pre><code class="language-javascript"><span class="cmt">/**
+ * Analyse un tableau de nombres
+ * @param {number[]} numbers - Tableau de nombres
+ * @returns {{min: number, max: number, avg: number} | null}
+ */</span>
+<span class="kw">function</span> <span class="fn">analyzeNumbers</span>(numbers) {
+    <span class="kw">if</span> (!numbers <span class="op">||</span> numbers.length <span class="op">===</span> <span class="num">0</span>) <span class="kw">return</span> <span class="kw">null</span>;
+
+    <span class="kw">const</span> min <span class="op">=</span> Math.<span class="fn">min</span>(...numbers);
+    <span class="kw">const</span> max <span class="op">=</span> Math.<span class="fn">max</span>(...numbers);
+    <span class="kw">const</span> avg <span class="op">=</span> numbers.<span class="fn">reduce</span>((a, b) <span class="op">=></span> a <span class="op">+</span> b, <span class="num">0</span>) <span class="op">/</span> numbers.length;
+
+    <span class="kw">return</span> { min, max, avg: Math.<span class="fn">round</span>(avg <span class="op">*</span> <span class="num">100</span>) <span class="op">/</span> <span class="num">100</span> };
+}
+
+<span class="cmt">// Tests</span>
+console.<span class="fn">assert</span>(
+    <span class="fn">analyzeNumbers</span>([])  <span class="op">===</span> <span class="kw">null</span>,
+    <span class="str">"Tableau vide → null"</span>
+);
+console.<span class="fn">assert</span>(
+    <span class="fn">analyzeNumbers</span>([<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>]).avg <span class="op">===</span> <span class="num">2</span>,
+    <span class="str">"Moyenne de [1,2,3] → 2"</span>
+);
+console.<span class="fn">assert</span>(
+    <span class="fn">analyzeNumbers</span>([<span class="num">5</span>]).min <span class="op">===</span> <span class="num">5</span>,
+    <span class="str">"Un seul élément"</span>
+);</code></pre>
+</div>
+
+<h2>Résumé</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Outil</th>
+            <th>Type</th>
+            <th>Prix</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>GitHub Copilot</td><td>Autocomplétion</td><td>10$/mois</td></tr>
+        <tr><td>ChatGPT</td><td>Chat</td><td>Gratuit / 20$/mois</td></tr>
+        <tr><td>Claude</td><td>Chat</td><td>Gratuit / 20$/mois</td></tr>
+        <tr><td>Cursor</td><td>Éditeur + IA</td><td>Gratuit / 20$/mois</td></tr>
+        <tr><td>Codeium</td><td>Autocomplétion</td><td>Gratuit</td></tr>
+    </tbody>
+</table>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeLearn — Apprendre à Coder</title>
+    <!-- PWA -->
+       <link rel="manifest" href="manifest.json">
+       <meta name="theme-color" content="#4a5ced">
+       <meta name="apple-mobile-web-app-capable" content="yes">
+       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+       <meta name="apple-mobile-web-app-title" content="CodeLearn">
+       <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+
+    <!-- Material Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/ajout.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/content.css">
+    <link rel="stylesheet" href="css/code-blocks.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
+</head>
+<body>
+
+    <!-- OVERLAY MOBILE -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <span class="material-symbols-outlined logo-icon">terminal</span>
+                <span class="logo-text">CodeLearn</span>
+            </div>
+            <button class="sidebar-close" id="sidebarClose" aria-label="Fermer le menu">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+
+        <!-- Search -->
+        <div class="sidebar-search">
+            <span class="material-symbols-outlined search-icon">search</span>
+            <input type="text" id="searchInput" placeholder="Rechercher un cours..." autocomplete="off">
+            <kbd class="search-shortcut">Ctrl+K</kbd>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="sidebar-nav" id="sidebarNav">
+            <!-- Généré dynamiquement -->
+        </nav>
+
+        <!-- Footer Sidebar -->
+        <div class="sidebar-footer">
+            <div class="progress-global">
+                <div class="progress-label">
+                    <span class="material-symbols-outlined">trending_up</span>
+                    <span>Progression globale</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="globalProgress"></div>
+                </div>
+                <span class="progress-text" id="globalProgressText">0%</span>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
+                <span class="material-symbols-outlined" id="themeIcon">dark_mode</span>
+                <span class="theme-label" id="themeLabel">Mode sombre</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main" id="main">
+
+        <!-- Top Bar -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+                <nav class="breadcrumb" id="breadcrumb">
+                    <span class="material-symbols-outlined">home</span>
+                    <span>Accueil</span>
+                </nav>
+            </div>
+            <div class="topbar-right">
+                <button class="topbar-btn" id="bookmarkBtn" aria-label="Favoris">
+                    <span class="material-symbols-outlined">bookmark</span>
+                </button>
+                <button class="topbar-btn" id="fontSizeBtn" aria-label="Taille police">
+                    <span class="material-symbols-outlined">format_size</span>
+                </button>
+                <button class="topbar-btn" id="printBtn" aria-label="Imprimer">
+                    <span class="material-symbols-outlined">print</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Content Area -->
+        <div class="content-wrapper">
+            <article class="content" id="content">
+                <!-- HOME PAGE -->
+                <div class="home-page" id="homePage">
+                    <div class="hero">
+                        <div class="hero-badge">
+                            <span class="material-symbols-outlined">rocket_launch</span>
+                            Plateforme d'apprentissage
+                        </div>
+                        <h1>Bienvenue sur <span class="gradient-text">CodeLearn</span></h1>
+                        <p class="hero-subtitle">
+                            Maîtrisez la programmation avec des cours structurés, interactifs et progressifs.
+                        </p>
+                        <div class="hero-stats">
+                            <div class="stat-card">
+                                <span class="material-symbols-outlined">school</span>
+                                <div>
+                                    <strong id="totalCourses">0</strong>
+                                    <span>Cours</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <span class="material-symbols-outlined">category</span>
+                                <div>
+                                    <strong id="totalCategories">0</strong>
+                                    <span>Catégories</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <span class="material-symbols-outlined">emoji_events</span>
+                                <div>
+                                    <strong id="completedLessons">0</strong>
+                                    <span>Complétés</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <section class="categories-section">
+                        <h2 class="section-title">
+                            <span class="material-symbols-outlined">apps</span>
+                            Catégories de cours
+                        </h2>
+                        <div class="categories-grid" id="categoriesGrid"></div>
+                    </section>
+
+                    <section class="recent-section" id="recentSection" style="display:none;">
+                        <h2 class="section-title">
+                            <span class="material-symbols-outlined">history</span>
+                            Reprendre où vous étiez
+                        </h2>
+                        <div class="recent-list" id="recentList"></div>
+                    </section>
+                </div>
+
+                <!-- Course Content -->
+                <div class="course-page" id="coursePage" style="display:none;">
+                    <div class="course-header" id="courseHeader"></div>
+                    <div class="course-body" id="courseBody"></div>
+                    <div class="course-footer" id="courseFooter"></div>
+                </div>
+            </article>
+
+            <!-- Table of Contents -->
+            <aside class="toc" id="toc" style="display:none;">
+                <div class="toc-header">
+                    <span class="material-symbols-outlined">toc</span>
+                    <span>Sur cette page</span>
+                </div>
+                <nav class="toc-nav" id="tocNav"></nav>
+            </aside>
+        </div>
+    </main>
+
+    <!-- SCROLL TO TOP -->
+    <button class="scroll-top" id="scrollTop" aria-label="Retour en haut">
+        <span class="material-symbols-outlined">keyboard_arrow_up</span>
+    </button>
+    
+    <!-- READING PROGRESS BAR -->
+    <div class="reading-progress-bar" id="readingProgressBar" style="display:none;">
+        <div class="reading-progress-fill" id="readingProgressFill"></div>
+    </div>
+
+    <!-- SEARCH MODAL -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <div class="search-modal-header">
+                <span class="material-symbols-outlined">search</span>
+                <input type="text" id="searchModalInput" placeholder="Rechercher dans tous les cours...">
+                <kbd>Esc</kbd>
+            </div>
+            <div class="search-modal-results" id="searchModalResults"></div>
+        </div>
+    </div>
+
+    <!-- FONT SIZE PANEL -->
+    <div class="font-panel" id="fontPanel">
+        <span class="font-panel-label">Taille du texte</span>
+        <div class="font-panel-controls">
+            <button id="fontDecrease">A-</button>
+            <span id="fontSizeValue">16px</span>
+            <button id="fontIncrease">A+</button>
+        </div>
+    </div>
+    
+    
+    <!-- PWA: Install Banner + SW Registration + Offline indicator -->
+    <div class="pwa-install-banner" id="pwaInstallBanner">
+        <div class="pwa-install-content">
+            <span class="material-symbols-outlined">install_mobile</span>
+            <div class="pwa-install-text">
+                <strong>Installer CodeLearn</strong>
+                <span>Accédez à vos cours hors-ligne</span>
+            </div>
+        </div>
+        <div class="pwa-install-actions">
+            <button class="pwa-dismiss-btn" id="pwaDismiss">Plus tard</button>
+            <button class="pwa-install-btn" id="pwaInstall">Installer</button>
+        </div>
+    </div>
+
+    <!-- Offline indicator -->
+    <div class="offline-indicator" id="offlineIndicator">
+        <span class="material-symbols-outlined">cloud_off</span>
+        <span>Mode hors-ligne</span>
+    </div>
+
+    <!-- Update notification -->
+    <div class="update-banner" id="updateBanner">
+        <span class="material-symbols-outlined">system_update</span>
+        <span>Une mise à jour est disponible</span>
+        <button class="update-btn" id="updateBtn">Mettre à jour</button>
+        <button class="update-dismiss" id="updateDismiss">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+    </div>
+
+    <!-- SINGLE JS FILE — NO MODULES -->
+    <script src="js/app.js"></script>
+</body>
+</html>
