@@ -141,3 +141,28 @@ Notes personnelles	❌ Absent	✅ Section pliable par leçon, auto-save debounce
 Barre de lecture	❌ Absent	✅ Progress bar en haut qui suit le scroll
 Sécurité clipboard	❌ Crash sans HTTPS	✅ Détection window.isSecureContext + double fallback
 
+
+
+
+📋 Déploiement sur GitHub Pages
+1. Créer le repository
+Bash
+
+cd CodeLearn
+git init
+git add .
+git commit -m "Initial commit — CodeLearn PWA"
+git branch -M main
+git remote add origin https://github.com/VOTRE_USERNAME/CodeLearn.git
+git push -u origin main
+2. Activer GitHub Pages
+Allez dans Settings → Pages
+Source : Deploy from a branch
+Branch : main / dossier : / (root)
+Cliquez Save
+
+3. URL de votre app
+text
+
+https://VOTRE_USERNAME.github.io/CodeLearn/
+GitHub Pages sert en HTTPS → navigator.clipboard et le Service Worker fonctionnent parfaitement ✓
